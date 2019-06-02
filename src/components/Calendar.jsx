@@ -144,7 +144,7 @@ class Calendar extends React.Component {
     const options = {afterDeleteRow: this.props.onAfterDeleteRow}
     const selectRowProp = {mode:'radio', clickToEdit: true, bgColor: 'lightblue'};
     return (
-      <div className="calendar">
+      <div className="calendar" style={{resize:'both',overflow:'auto'}}>
         {this.renderHeader()}
         {this.renderDays()}
         {this.renderCells()}
@@ -157,14 +157,14 @@ class Calendar extends React.Component {
             </BootstrapTable>
           </div>
           <span style={colorpickerStyle}>
-          <label style={labelStyle}>Update Date: </label>
+            <label style={labelStyle}>Update Date: </label>
             <input style={dateStyle} type="date" value={this.state.enteredDate} onChange={this.props.onEditDate}/>
             <label style={labelStyle}>Update color: </label>
-            <input type='color' value={this.props.colorValue} onChange={this.props.onEditColor}/>
+            <input style={dateStyle} type='color' value={this.props.colorValue} onChange={this.props.onEditColor}/>
           </span>
           <span style={closeBtnStyle}>
-            <button title={this.props.saveButtonToolip} onClick={this.props.onSaveButtonClick}>Save</button>
-            <button title={this.props.closeButtonToolip} style={{marginLeft:5}} onClick={this.editUserToggleModal}>Close</button>
+            <button style={buttonstyle} title={this.props.saveButtonToolip} onClick={this.props.onSaveButtonClick}>Save</button>
+            <button style={buttonstyle} title={this.props.closeButtonToolip} onClick={this.editUserToggleModal}>Close</button>
           </span>
         </Modal>
         
@@ -177,11 +177,12 @@ const ulStyle = {
   float:'left',
   margin: 0,
   padding: 0,
-  width: 100,
+  width: '100%',
   color:'black'
 }
 const dateStyle = {
-  marginRight:5,
+  marginRight:10,
+  marginLeft:10,
   width:150
 }
 
@@ -202,10 +203,19 @@ Calendar.defaultProps={
   dataIdField:'id',
   dataEventNameField:'eventName',
   headerName:"Events",
-  tableHeight:'290',
+  tableHeight:'280',
   saveButtonToolip:'Click to save changes',
   closeButtonToolip:'Close',
 }
+const buttonstyle={
+  backgroundColor: '#1a8fff',
+  color: 'white',
+  padding: '10px 12px',
+  border: 'none',
+  borderRadius: '7px',
+  cursor: 'pointer',
+  marginLeft:'5px'
+};
 
 const CustomStyles = {
   overlay: {
